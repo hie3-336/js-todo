@@ -83,12 +83,18 @@ const createIncompleteList = (text) => {
   deleteButton.className = "btn btn-danger ms-2";
   buttonsTd.className = "d-flex justify-content-end";
   deleteButton.addEventListener("click", () => {
-    todoItemCount--;
-    if (completeCheckbox.checked){
-      completeItemCount--;
-    } 
-    updateTaskCount();
-    deleteFromIncompleteList(buttonsTd.parentNode);
+
+    // 削除確認ダイアログ
+    if (window.confirm("本当に削除してもよろしいでしょうか？")){
+      todoItemCount--;
+
+      // タスクが完了の時だけ、タスク完了数を減少
+      if (completeCheckbox.checked){
+        completeItemCount--;
+      } 
+      updateTaskCount();
+      deleteFromIncompleteList(buttonsTd.parentNode);
+    }
   });
 
   // tdタグの下に編集・削除ボタンを配置
