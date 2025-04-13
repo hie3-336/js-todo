@@ -25,26 +25,50 @@ const createIncompleteList = (text) => {
   const textTd = document.createElement("td");
   textTd.innerText = text;
 
+  const buttonsTd = document.createElement("td");
+
   // 編集ボタン
   const editButton = document.createElement("button");
   editButton.className = "btn btn-primary";
   editButton.innerText = "編集";
-  editButton.addEventListener("click", () => {
-    //編集ボタンを押した時の処理
+  const editForm = document.createElement("input");
+  editForm.setAttribute('value',text);
 
+  // 編集完了ボタン
+  const editCompButton = document.createElement("button");
+  editCompButton.className = "btn btn-primary";
+  editCompButton.innerText = "完了";
+
+  //編集ボタンを押した時の処理
+  editButton.addEventListener("click", () => {
+    textTd.innerText = "";
+    textTd.appendChild(editForm);
+    buttonsTd.appendChild(editCompButton);
+    editButton.style.display = "none";
+    deleteButton.style.display = "none";
   });
+
+  // 編集完了ボタンを押した時の処理
+  editCompButton.addEventListener("click", () => {
+    textTd.removeChild(editForm);
+    textTd.innerText = editForm.value;
+    buttonsTd.removeChild(editCompButton);
+    editButton.style.display = "block";
+    deleteButton.style.display = "block";
+  });
+
   // 削除ボタン作成
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.className = "btn btn-danger ms-2";
-
-  const buttonsTd = document.createElement("td");
   buttonsTd.className = "d-flex justify-content-end";
-  buttonsTd.appendChild(editButton);
-  buttonsTd.appendChild(deleteButton);
   deleteButton.addEventListener("click", () => {
     deleteFromIncompleteList(buttonsTd.parentNode);
   });
+
+  // tdタグの下に編集・削除ボタンを配置
+  buttonsTd.appendChild(editButton);
+  buttonsTd.appendChild(deleteButton);
 
   // trタグの下にtdタグを配置
   tr.appendChild(checkboxTd);
