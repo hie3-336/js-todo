@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Todo App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="m-5 d-flex">
+      <input id="add-text" class="form-control fs-5 w-25" placeholder="TODOを入力" />
+      <button id="add-button" class="btn btn-primary ms-3 fs-5">追加</button>
+    </div>
+    <div class="incomplete-area m-5">
+      <div class="w-50">
+        <table class="table table-striped fs-4">
+          <thead class="thead">
+            <tr>
+              <th>タスク</th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody id="incomplete-list">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
