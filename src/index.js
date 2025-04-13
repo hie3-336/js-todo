@@ -1,4 +1,5 @@
 let todoItemCount = 0;
+let completeItemCount = 0;
 
 // タスク入力処理
 const onClickAdd = () => {
@@ -15,8 +16,9 @@ const deleteFromIncompleteList = (target) => {
 // タスク数更新処理
 const updateTaskCount = () => {
   document.getElementById("js-todo-count").textContent = todoItemCount;
+  document.getElementById("js-complete-count").textContent = completeItemCount;
+  document.getElementById("js-incomplete-count").textContent = todoItemCount - completeItemCount;
 }
-
 
 const createIncompleteList = (text) => { 
   // trタグ作成
@@ -28,6 +30,16 @@ const createIncompleteList = (text) => {
   const completeCheckbox = document.createElement('input');
   completeCheckbox.setAttribute('type','checkbox');
   checkboxTd.appendChild(completeCheckbox);
+
+  // タスク完了をチェックした時の処理
+  completeCheckbox.addEventListener("change", () => {
+    if (completeCheckbox.checked){
+      completeItemCount++;
+    } else {
+      completeItemCount--;
+    }
+    updateTaskCount();
+  })
 
   // タスクテキスト
   const textTd = document.createElement("td");
@@ -72,6 +84,9 @@ const createIncompleteList = (text) => {
   buttonsTd.className = "d-flex justify-content-end";
   deleteButton.addEventListener("click", () => {
     todoItemCount--;
+    if (completeCheckbox.checked){
+      completeItemCount--;
+    } 
     updateTaskCount();
     deleteFromIncompleteList(buttonsTd.parentNode);
   });
