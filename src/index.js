@@ -1,3 +1,5 @@
+let todoItemCount = 0;
+
 // タスク入力処理
 const onClickAdd = () => {
   const inputText = document.getElementById("js-add-text").value;
@@ -10,7 +12,11 @@ const deleteFromIncompleteList = (target) => {
   document.getElementById("js-todo-list").removeChild(target);
 };
 
-let todoItemCount = 0;
+// タスク数更新処理
+const updateTaskCount = () => {
+  document.getElementById("js-todo-count").textContent = todoItemCount;
+}
+
 
 const createIncompleteList = (text) => { 
   // trタグ作成
@@ -65,6 +71,8 @@ const createIncompleteList = (text) => {
   deleteButton.className = "btn btn-danger ms-2";
   buttonsTd.className = "d-flex justify-content-end";
   deleteButton.addEventListener("click", () => {
+    todoItemCount--;
+    updateTaskCount();
     deleteFromIncompleteList(buttonsTd.parentNode);
   });
 
@@ -80,7 +88,8 @@ const createIncompleteList = (text) => {
   // todoリストを配置
   document.getElementById("js-todo-list").appendChild(tr);
 
-
+  todoItemCount++;
+  updateTaskCount();
 };
 
 document
