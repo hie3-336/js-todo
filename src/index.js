@@ -1,3 +1,4 @@
+// タスク数初期値
 let todoItemCount = 0;
 let completeItemCount = 0;
 
@@ -45,8 +46,6 @@ const createIncompleteList = (text) => {
   const textTd = document.createElement("td");
   textTd.innerText = text;
 
-  const buttonsTd = document.createElement("td");
-
   // 編集ボタン
   const editButton = document.createElement("button");
   editButton.className = "btn btn-primary";
@@ -56,10 +55,13 @@ const createIncompleteList = (text) => {
 
   // 編集完了ボタン
   const editCompButton = document.createElement("button");
-  editCompButton.className = "btn btn-primary";
+  editCompButton.className = "btn btn-success";
   editCompButton.innerText = "完了";
 
-  //編集ボタンを押した時の処理
+  // 編集・削除ボタンを纏めたtd要素
+  const buttonsTd = document.createElement("td");
+
+  // 編集ボタンを押した時の処理
   editButton.addEventListener("click", () => {
     textTd.innerText = "";
     textTd.appendChild(editForm);
@@ -82,6 +84,7 @@ const createIncompleteList = (text) => {
   deleteButton.innerText = "削除";
   deleteButton.className = "btn btn-danger ms-2";
   buttonsTd.className = "d-flex justify-content-end";
+
   deleteButton.addEventListener("click", () => {
 
     // 削除確認ダイアログ
@@ -97,11 +100,11 @@ const createIncompleteList = (text) => {
     }
   });
 
-  // tdタグの下に編集・削除ボタンを配置
+  // tdタグの子要素に編集・削除ボタンを配置
   buttonsTd.appendChild(editButton);
   buttonsTd.appendChild(deleteButton);
 
-  // trタグの下にtdタグを配置
+  // trタグの子要素にtdタグを配置
   tr.appendChild(checkboxTd);
   tr.appendChild(textTd);
   tr.appendChild(buttonsTd);
@@ -109,10 +112,12 @@ const createIncompleteList = (text) => {
   // todoリストを配置
   document.getElementById("js-todo-list").appendChild(tr);
 
+  // タスク合計数増加と値更新
   todoItemCount++;
   updateTaskCount();
 };
 
+// タスク追加ボタンを押すとタスク入力処理を実行
 document
   .getElementById("js-add-button")
   .addEventListener("click", () => onClickAdd());
