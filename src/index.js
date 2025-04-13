@@ -1,14 +1,16 @@
 // タスク入力処理
 const onClickAdd = () => {
-  const inputText = document.getElementById("add-text").value;
-  document.getElementById("add-text").value = "";
+  const inputText = document.getElementById("js-add-text").value;
+  document.getElementById("js-add-text").value = "";
   createIncompleteList(inputText);
 };
 
 // タスク削除処理
 const deleteFromIncompleteList = (target) => {
-  document.getElementById("incomplete-list").removeChild(target);
+  document.getElementById("js-todo-list").removeChild(target);
 };
+
+let todoItemCount = 0;
 
 const createIncompleteList = (text) => { 
   // trタグ作成
@@ -76,9 +78,11 @@ const createIncompleteList = (text) => {
   tr.appendChild(buttonsTd);
 
   // todoリストを配置
-  document.getElementById("incomplete-list").appendChild(tr);
+  document.getElementById("js-todo-list").appendChild(tr);
+
+
 };
 
 document
-  .getElementById("add-button")
+  .getElementById("js-add-button")
   .addEventListener("click", () => onClickAdd());
