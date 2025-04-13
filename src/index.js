@@ -1,11 +1,11 @@
+// タスク入力処理
 const onClickAdd = () => {
-  // テキストボックスの値を取得して初期化
   const inputText = document.getElementById("add-text").value;
   document.getElementById("add-text").value = "";
   createIncompleteList(inputText);
 };
 
-// targetの親要素を削除
+// タスク削除処理
 const deleteFromIncompleteList = (target) => {
   document.getElementById("incomplete-list").removeChild(target);
 };

@@ -10,12 +10,35 @@
       <input id="add-text" class="form-control fs-5 w-25" placeholder="TODOを入力" />
       <button id="add-button" class="btn btn-primary ms-3 fs-5">追加</button>
     </div>
-    <div class="incomplete-area m-5">
+
+    <div class="m-5">
+      <div class="w-50">
+        <table class="table fs-5">
+          <thead class="thead">
+            <tr>
+              <th>全てのタスク</th>
+              <th>完了済み</th>
+              <th>未完了</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <div class="m-5">
       <div class="w-75">
         <table class="table table-striped fs-4">
           <thead class="thead">
             <tr>
-              <th>タスク</th>
+              <th>タスク一覧</th>
               <th> </th>
             </tr>
           </thead>
