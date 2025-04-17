@@ -101,7 +101,7 @@ const createIncompleteList = (text) => {
         completeItemCount--;
       } 
       updateTaskCount();
-      deleteFromIncompleteList(buttonsTd.parentNode);
+      deleteFromIncompleteList(tr);
     }
   });
 
