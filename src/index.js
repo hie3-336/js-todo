@@ -71,8 +71,8 @@ const createIncompleteList = (text) => {
     textTd.innerText = "";
     textTd.appendChild(editForm);
     buttonsTd.appendChild(editCompButton);
-    editButton.style.display = "none";
-    deleteButton.style.display = "none";
+    buttonsTd.removeChild(editButton);
+    buttonsTd.removeChild(deleteButton);
   });
 
   // 編集完了ボタンを押した時の処理
@@ -80,8 +80,8 @@ const createIncompleteList = (text) => {
     textTd.removeChild(editForm);
     textTd.innerText = editForm.value;
     buttonsTd.removeChild(editCompButton);
-    editButton.style.display = "block";
-    deleteButton.style.display = "block";
+    buttonsTd.appendChild(editButton);
+    buttonsTd.appendChild(deleteButton);
   });
 
   // 削除ボタン作成
