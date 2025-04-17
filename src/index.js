@@ -4,10 +4,15 @@ let completeItemCount = 0;
 
 // タスク入力処理
 const onClickAdd = () => {
-  const inputText = document.getElementById("js-add-text").value;
+  const inputText = document.getElementById("js-add-text").value.trim();
   document.getElementById("js-add-text").value = "";
+  if (inputText === "") {
+    alert("タスクを入力してください");
+    return;
+  }
   createIncompleteList(inputText);
 };
+
 
 // タスク削除処理
 const deleteFromIncompleteList = (target) => {
